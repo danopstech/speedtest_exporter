@@ -114,6 +114,8 @@ func (e *Exporter) speedtest(ch chan<- prometheus.Metric) bool {
 			server.Country,
 			fmt.Sprintf("%f", server.Distance),
 		)
+	} else {
+		log.Errorf("failed to carry out ping test: %s", err.Error())
 	}
 
 	if err := server.DownloadTest(false); err == nil {
@@ -130,6 +132,8 @@ func (e *Exporter) speedtest(ch chan<- prometheus.Metric) bool {
 			server.Country,
 			fmt.Sprintf("%f", server.Distance),
 		)
+	} else {
+		log.Errorf("failed to carry out download test: %s", err.Error())
 	}
 
 	if err := server.UploadTest(false); err == nil {
@@ -146,6 +150,8 @@ func (e *Exporter) speedtest(ch chan<- prometheus.Metric) bool {
 			server.Country,
 			fmt.Sprintf("%f", server.Distance),
 		)
+	} else {
+		log.Errorf("failed to carry out upload test: %s", err.Error())
 	}
 
 	return true
