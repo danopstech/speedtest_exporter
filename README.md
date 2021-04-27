@@ -51,7 +51,7 @@ docker run \
 
 Configure [Prometheus](https://prometheus.io/) to scrape metrics from localhost:9090/metrics
 
-This exporter locks as it conducts the speedtest when scraped, **remember set scrape interval, and scrap timeout** accordingly as per example.
+This exporter locks (one concurrent scrape at a time) as it conducts the speedtest when scraped, **remember set scrape interval, and scrap timeout** accordingly as per example.
 
 ```yaml
 ...

@@ -34,7 +34,9 @@ func main() {
              <head><title>Speedtest Exporter</title></head>
              <body>
              <h1>Speedtest Exporter</h1>
+             <p>Metrics page will take approx 30 seconds to load and show results, as the exporter carries out a speedtest when scraped.</p>
              <p><a href='` + metricsPath + `'>Metrics</a></p>
+             <p><a href='/health'>Health</a></p>
              </body>
              </html>`))
 	})
