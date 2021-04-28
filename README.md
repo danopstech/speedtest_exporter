@@ -58,7 +58,7 @@ This exporter locks (one concurrent scrape at a time) as it conducts the speedte
 scrape_configs
     - job_name: speedtest
       scrape_interval: 60m
-      scrape_timeout:  40s
+      scrape_timeout:  60s
       static_configs:
         - targets: ['localhost:9090']
 ...
