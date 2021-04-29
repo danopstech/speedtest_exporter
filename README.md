@@ -78,3 +78,10 @@ scrape_configs
 # HELP speedtest_upload_speed_Bps Last upload speedtest result
 # TYPE speedtest_upload_speed_Bps gauge
 ```
+## Example Grafana Dashboard:
+
+https://grafana.com/grafana/dashboards/14336
+
+<p align="center">
+	<img src="https://github.com/danopstech/speedtest_exporter/raw/main/.docs/assets/screenshot.jpg" width="95%">
+</p>
