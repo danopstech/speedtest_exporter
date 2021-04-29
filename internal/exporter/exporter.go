@@ -109,10 +109,7 @@ func (e *Exporter) speedtest(testUUID string, ch chan<- prometheus.Metric) bool 
 	ok = downloadTest(testUUID, user, server, ch) && ok
 	ok = uploadTest(testUUID, user, server, ch) && ok
 
-	if ok {
-		return true
-	}
-	return false
+	return ok
 }
 
 func pingTest(testUUID string, user *speedtest.User, server *speedtest.Server, ch chan<- prometheus.Metric) bool {
