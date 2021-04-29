@@ -34,7 +34,7 @@ func main() {
              <head><title>Speedtest Exporter</title></head>
              <body>
              <h1>Speedtest Exporter</h1>
-             <p>Metrics page will take approx 30 seconds to load and show results, as the exporter carries out a speedtest when scraped.</p>
+             <p>Metrics page will take approx 40 seconds to load and show results, as the exporter carries out a speedtest when scraped.</p>
              <p><a href='` + metricsPath + `'>Metrics</a></p>
              <p><a href='/health'>Health</a></p>
              </body>
@@ -42,8 +42,17 @@ func main() {
 	})
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		_, _ = fmt.Fprint(w, "OK")
+		client := http.Client{
+			Timeout: 3 * time.Second,
+		}
+		_, err := client.Get("https://clients3.google.com/generate_204")
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			_, _ = fmt.Fprint(w, "No Internet Connection")
+		} else {
+			w.WriteHeader(http.StatusOK)
+			_, _ = fmt.Fprint(w, "OK")
+		}
 	})
 
 	http.Handle(metricsPath, promhttp.HandlerFor(r, promhttp.HandlerOpts{
