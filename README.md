@@ -11,8 +11,13 @@ A [Speedtest](https://www.speedtest.net) exporter for Prometheus.
 [![Release](https://img.shields.io/github/release/danopstech/speedtest_exporter.svg)](https://github.com/danopstech/speedtest_exporter/releases/latest)
 [![Docker](https://img.shields.io/docker/pulls/danopstech/speedtest_exporter)](https://hub.docker.com/r/danopstech/speedtest_exporter)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/danopstech/speedtest_exporter)
+![os/arch](https://img.shields.io/badge/os%2Farch-amd64-yellow)
+![os/arch](https://img.shields.io/badge/os%2Farch-arm64-yellow)
+![os/arch](https://img.shields.io/badge/os%2Farch-armv7-yellow)
 
-## Simple Usage:
+> 📡 **[Starlink Monitoring System](https://github.com/danopstech/starlink) uses this Container.** it is a batteries included Docker Compose file to run exporters, Grafana and Prometheus.
+
+## Usage:
 
 ### Flags
 
