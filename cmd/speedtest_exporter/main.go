@@ -6,11 +6,10 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/danopstech/speedtest_exporter/internal/exporter"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/prometheus/common/log"
-
-	"github.com/danopstech/speedtest_exporter/internal/exporter"
+	log "github.com/sirupsen/logrus"
 )
 
 const (

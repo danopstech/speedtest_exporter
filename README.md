@@ -7,6 +7,7 @@
 A [Speedtest](https://www.speedtest.net) exporter for Prometheus.
 
 [![goreleaser](https://github.com/danopstech/speedtest_exporter/actions/workflows/release.yaml/badge.svg)](https://github.com/danopstech/speedtest_exporter/actions/workflows/release.yaml)
+[![build](https://github.com/danopstech/speedtest_exporter/actions/workflows/build.yaml/badge.svg)](https://github.com/danopstech/speedtest_exporter/actions/workflows/build.yaml)
 [![License](https://img.shields.io/github/license/danopstech/speedtest_exporter)](/LICENSE)
 [![Release](https://img.shields.io/github/release/danopstech/speedtest_exporter.svg)](https://github.com/danopstech/speedtest_exporter/releases/latest)
 [![Docker](https://img.shields.io/docker/pulls/danopstech/speedtest_exporter)](https://hub.docker.com/r/danopstech/speedtest_exporter)
@@ -14,8 +15,7 @@ A [Speedtest](https://www.speedtest.net) exporter for Prometheus.
 ![os/arch](https://img.shields.io/badge/os%2Farch-amd64-yellow)
 ![os/arch](https://img.shields.io/badge/os%2Farch-arm64-yellow)
 ![os/arch](https://img.shields.io/badge/os%2Farch-armv7-yellow)
-
-> 📡 **[Starlink Monitoring System](https://github.com/danopstech/starlink) uses this Container.** it is a batteries included Docker Compose file to run exporters, Grafana and Prometheus.
+[![Go Report Card](https://goreportcard.com/badge/github.com/danopstech/speedtest_exporter)](https://goreportcard.com/report/github.com/danopstech/speedtest_exporter)
 
 ## Usage:
 

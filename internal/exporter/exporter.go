@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/common/log"
 	"github.com/showwin/speedtest-go/speedtest"
+	log "github.com/sirupsen/logrus"
 )
 
 const (
