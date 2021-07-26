@@ -18,9 +18,11 @@ const (
 
 func main() {
 	port := flag.String("port", "9090", "listening port to expose metrics on")
+	serverID := flag.Int("server_id", -1, "Speedtest.net server ID to run test against, -1 will pick the closest server to your location")
+	serverFallback := flag.Bool("server_fallback", false, "If the server_id given is not available, should we fallback to closest available server")
 	flag.Parse()
 
-	exporter, err := exporter.New()
+	exporter, err := exporter.New(*serverID, *serverFallback)
 	if err != nil {
 		panic(err)
 	}

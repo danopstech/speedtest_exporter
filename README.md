@@ -27,7 +27,11 @@ A [Speedtest](https://www.speedtest.net) exporter for Prometheus.
 $ ./speedtest_exporter --help
 Usage of speedtest_exporter
   -port string
-        Listening port for prometheus endpoint (default 9090)
+        listening port to expose metrics on (default "9090")
+  -server_fallback
+        If the serverID given is not available, should we fallback to closest available server
+  -server_id int
+        Speedtest.net server ID to run test against, -1 will pick the closest server to your location (default -1)
 
 ```
 

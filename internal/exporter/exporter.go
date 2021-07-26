@@ -47,11 +47,17 @@ var (
 
 // Exporter runs speedtest and exports them using
 // the prometheus metrics package.
-type Exporter struct{}
+type Exporter struct {
+	serverID       int
+	serverFallback bool
+}
 
 // New returns an initialized Exporter.
-func New() (*Exporter, error) {
-	return &Exporter{}, nil
+func New(serverID int, serverFallback bool) (*Exporter, error) {
+	return &Exporter{
+		serverID:       serverID,
+		serverFallback: serverFallback,
+	}, nil
 }
 
 // Describe describes all the metrics. It implements prometheus.Collector.
@@ -66,10 +72,9 @@ func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 // Collect fetches the stats from Starlink dish and delivers them
 // as Prometheus metrics. It implements prometheus.Collector.
 func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
-	start := time.Now()
 	testUUID := uuid.New().String()
+	start := time.Now()
 	ok := e.speedtest(testUUID, ch)
-	d := time.Since(start).Seconds()
 
 	if ok {
 		ch <- prometheus.MustNewConstMetric(
@@ -77,7 +82,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 			testUUID,
 		)
 		ch <- prometheus.MustNewConstMetric(
-			scrapeDurationSeconds, prometheus.GaugeValue, d,
+			scrapeDurationSeconds, prometheus.GaugeValue, time.Since(start).Seconds(),
 			testUUID,
 		)
 	} else {
@@ -101,9 +106,25 @@ func (e *Exporter) speedtest(testUUID string, ch chan<- prometheus.Metric) bool 
 		log.Errorf("could not fetch server list: %s", err.Error())
 		return false
 	}
-	// taking the closes server
-	servers := serverList.Servers
-	server := servers[0]
+
+	var server *speedtest.Server
+
+	if e.serverID == -1 {
+		server = serverList.Servers[0]
+	} else {
+		servers, err := serverList.FindServer([]int{e.serverID})
+		if err != nil {
+			log.Error(err)
+			return false
+		}
+
+		if servers[0].ID != fmt.Sprintf("%d", e.serverID) && !e.serverFallback {
+			log.Errorf("could not find your choosen server ID %d in the list of avaiable servers, server_fallback is not set so failing this test", e.serverID)
+			return false
+		}
+
+		server = servers[0]
+	}
 
 	ok := pingTest(testUUID, user, server, ch)
 	ok = downloadTest(testUUID, user, server, ch) && ok
