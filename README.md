@@ -25,13 +25,15 @@ A [Speedtest](https://www.speedtest.net) exporter for Prometheus.
 
 ```bash
 $ ./speedtest_exporter --help
-Usage of speedtest_exporter
+Usage of speedtest_exporter:
   -port string
         listening port to expose metrics on (default "9090")
   -server_fallback
-        If the serverID given is not available, should we fallback to closest available server
+        If the server_id given is not available, should we fallback to closest available server
   -server_id int
         Speedtest.net server ID to run test against, -1 will pick the closest server to your location (default -1)
+  -timeout int
+        request timeout for the execution of the speedtest (default 60)
 
 ```
 
